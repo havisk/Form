@@ -1,11 +1,15 @@
-let ContactController = function() {
+let ContactController = function($scope, UserService) {
 
-  let vm = this;
+  UserService.getAllContacts().then ( (res) =>{
+     $scope.contacts = res.data.results;
+   });
+
+
 
   };
   
   
 
-ContactController.$inject = [];
+ContactController.$inject = ['$scope', 'UserService'];
 
 export default ContactController;

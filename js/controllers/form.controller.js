@@ -1,6 +1,7 @@
 let FormController = function($scope, UserService) {
 
   let vm = this;
+
   vm.addContact = addContact;
 
 
@@ -50,7 +51,7 @@ let FormController = function($scope, UserService) {
     }
   };
 
-$scope.$watch('contact.website', function (newVal, prevVal) {
+ $scope.$watch('contact.website', function (newVal, prevVal) {
     if(!newVal) return;
     validateWeb(newVal);
   });
@@ -70,24 +71,13 @@ $scope.$watch('contact.website', function (newVal, prevVal) {
     validateMess(newVal);
   });
 
-  function addContact( contact){
-    UserService.addContact(contact).then( (res) =>{
-    console.log(res);    
+  function addContact( contactObj){
+    UserService.addContact(contactObj).then( (res) =>{   
 
     });
+    $scope.contact={};
   };
 
-
-  
-
-
-
-
-
-
-
-  
-  
 
 };
 

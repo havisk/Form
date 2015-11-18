@@ -13,12 +13,12 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/layout.tpl.html'
   }).state('root.form', {
     url: '/',
-    controller: 'FormController',
+    controller: 'FormController as vm',
     templateUrl: 'templates/form.tpl.html'
   }).state('root.contacts', {
     url: '/contacts',
     controller: 'ContactController',
-    templateUrl: 'templates/contacts..tpl.html'
+    templateUrl: 'templates/contacts.tpl.html'
 
   });
 };
@@ -46,20 +46,22 @@ exports['default'] = {
 module.exports = exports['default'];
 
 },{}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ContactController = function ContactController() {
+var ContactController = function ContactController($scope, UserService) {
 
-  var vm = this;
+  UserService.getAllContacts().then(function (res) {
+    $scope.contacts = res.data.results;
+  });
 };
 
-ContactController.$inject = [];
+ContactController.$inject = ['$scope', 'UserService'];
 
-exports["default"] = ContactController;
-module.exports = exports["default"];
+exports['default'] = ContactController;
+module.exports = exports['default'];
 
 },{}],4:[function(require,module,exports){
 'use strict';
@@ -70,6 +72,7 @@ Object.defineProperty(exports, '__esModule', {
 var FormController = function FormController($scope, UserService) {
 
   var vm = this;
+
   vm.addContact = addContact;
 
   var validateName = function validateName(name) {
@@ -131,10 +134,9 @@ var FormController = function FormController($scope, UserService) {
     validateMess(newVal);
   });
 
-  function addContact(contact) {
-    UserService.addContact(contact).then(function (res) {
-      console.log(res);
-    });
+  function addContact(contactObj) {
+    UserService.addContact(contactObj).then(function (res) {});
+    $scope.contact = {};
   };
 };
 
@@ -186,8 +188,8 @@ var UserService = function UserService($http, PARSE) {
 
   var url = PARSE.URL + 'classes/contact';
 
+  this.getAllContacts = getAllContacts;
   this.addContact = addContact;
-  this.getContacts = getContacts;
 
   function Contact(contactObj) {
     this.name = contactObj.name;
@@ -196,14 +198,14 @@ var UserService = function UserService($http, PARSE) {
     this.message = contactObj.message;
   };
 
+  function getAllContacts() {
+    return $http.get(url, PARSE.CONFIG);
+  }
+
   function addContact(contactObj) {
     var c = new Contact(contactObj);
     return $http.post(url, c, PARSE.CONFIG);
   };
-
-  function getContacts() {
-    return $http.get(url, PARSE.CONFIG);
-  }
 };
 
 UserService.$inject = ['$http', 'PARSE'];

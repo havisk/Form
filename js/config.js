@@ -9,13 +9,13 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
     .state('root.form', {
       url: '/',
-      controller: 'FormController',
+      controller: 'FormController as vm',
       templateUrl: 'templates/form.tpl.html'
     })
     .state('root.contacts', {
       url:'/contacts',
       controller: 'ContactController',
-      templateUrl: 'templates/contacts..tpl.html'
+      templateUrl: 'templates/contacts.tpl.html'
 
     });
 
