@@ -1,0 +1,16 @@
+<h3>Contact Form</h3>
+<div class="home">
+  <form ng-submit="addContact(contact)">
+    <ul>
+      <li><input ng-model="contact.name" placeholder="Jane Doe" required>
+      <small>{{ namMsg }}</small></li>
+      <li><input ng-model="contact.email"  placeholder="jdoe@gmail.com" required>
+      <small>{{ emailMsg }}</small></li>
+      <li><input ng-model="contact.website" placeholder="http://ssmento.com" required>
+      <small>{{ newMsg }}</small></li>
+      <li><textarea rows ="5" cols="50" ng-model="contact.message" placeholder="Friendly Message" required></textarea>
+      <small>{{ pssMsg }}</small></li>
+    </ul>
+    <button>Submit</button>
+  </form>
+</div>
