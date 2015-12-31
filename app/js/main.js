@@ -12,11 +12,11 @@ var config = function config($stateProvider, $urlRouterProvider) {
     abstract: true,
     templateUrl: 'templates/layout.tpl.html'
   }).state('root.form', {
-    url: '/',
+    url: '/add',
     controller: 'FormController as vm',
     templateUrl: 'templates/form.tpl.html'
   }).state('root.contacts', {
-    url: '/contacts',
+    url: '/',
     controller: 'ContactController',
     templateUrl: 'templates/contacts.tpl.html'
 
@@ -53,8 +53,10 @@ Object.defineProperty(exports, '__esModule', {
 });
 var ContactController = function ContactController($scope, UserService) {
 
+  //gets all the contacts
   UserService.getAllContacts().then(function (res) {
     $scope.contacts = res.data.results;
+    console.log(res);
   });
 };
 
@@ -75,6 +77,7 @@ var FormController = function FormController($scope, UserService) {
 
   vm.addContact = addContact;
 
+  //input validations
   var validateName = function validateName(name) {
 
     if (name.length < 4) {
@@ -121,6 +124,7 @@ var FormController = function FormController($scope, UserService) {
     validateWeb(newVal);
   });
 
+  //sets acceptable message length to 7 characters
   var validateMess = function validateMess(message) {
     if (message.length < 7) {
       $scope.pssMsg = " No Way Man!! Write more.";
@@ -134,6 +138,7 @@ var FormController = function FormController($scope, UserService) {
     validateMess(newVal);
   });
 
+  //Adds contacts
   function addContact(contactObj) {
     UserService.addContact(contactObj).then(function (res) {});
     $scope.contact = {};

@@ -4,7 +4,7 @@ let FormController = function($scope, UserService) {
 
   vm.addContact = addContact;
 
-
+//input validations
   let validateName = (name) => {
   
     if (name.length < 4)
@@ -57,7 +57,7 @@ let FormController = function($scope, UserService) {
   });
 
 
-
+//sets acceptable message length to 7 characters
   let validateMess = (message) => {
     if (message.length < 7){
       $scope.pssMsg = " No Way Man!! Write more."
@@ -71,6 +71,7 @@ let FormController = function($scope, UserService) {
     validateMess(newVal);
   });
 
+//Adds contacts
   function addContact( contactObj){
     UserService.addContact(contactObj).then( (res) =>{   
 

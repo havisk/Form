@@ -3,7 +3,9 @@
   <form ng-submit="vm.addContact(contact)">
     <input ng-model="contact.name" placeholder="Jane Doe" required>
     <small>{{ namMsg }}</small>
-    <input ng-model="contact.email"  placeholder="jdoe@gmail.com" required>
+    <input ng-model="contact.gender" placeholder="Male/Female" required>
+    <small>{{ namMsg }}</small>
+    <input ng-model="contact.email" type="email" placeholder="jdoe@gmail.com" required>
     <small>{{ emailMsg }}</small>
     <input ng-model="contact.website" placeholder="http://ssmento.com" required>
     <small>{{ newMsg }}</small>

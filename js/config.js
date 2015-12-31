@@ -8,12 +8,12 @@ let config = function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/layout.tpl.html'
     })
     .state('root.form', {
-      url: '/',
+      url: '/add',
       controller: 'FormController as vm',
       templateUrl: 'templates/form.tpl.html'
     })
     .state('root.contacts', {
-      url:'/contacts',
+      url:'/',
       controller: 'ContactController',
       templateUrl: 'templates/contacts.tpl.html'
 

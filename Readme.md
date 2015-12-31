@@ -1,6 +1,9 @@
 ## Welcome to My Project
 
-> I am your Readme.md file, you should probably update me.
+Generic Web form where you can add your contacts.  Thinking about making it possible to add photos and change color of blocks depending on gender.  
+
+Used AngularJs
+
 
 
 ## Usage
